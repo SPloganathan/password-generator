@@ -17,6 +17,24 @@ function generatePassword() {
     var shouldContinue = prompt(
       "Click OK to start including special characters"
     );
+    if (shouldContinue) {
+      var lowerCase = prompt(
+        "Click OK to confirm including lowercase characters"
+      );
+      var upperCase = prompt(
+        "Click OK to confirm including uppercase characters"
+      );
+      var numeric = prompt("Click OK to confirm including numeric characters");
+      var specialCharacter = prompt(
+        "Click OK to confirm including special characters"
+      );
+      if (!lowerCase && !upperCase && !numeric && !specialCharacter) {
+        alert("Please choose atleast one password criteria");
+        generatePassword();
+      }
+
+      return passwordLength;
+    }
 
     return "You must choose password criteria";
   }
