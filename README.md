@@ -19,5 +19,6 @@ Given UI for Password Generator application, we need to create JavaScript functi
 
 ## Deployed Screenshot and URL
 
+## https://sploganathan.github.io/password-generator/
 
 ![alt+text](./assets/screenshot/Password%20Generator.png)
