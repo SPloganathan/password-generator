@@ -46,7 +46,7 @@ function generatePassword() {
       var numberChars = "0123456789";
       var upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
       var lowerChars = "abcdefghijklmnopqrstuvwxyz";
-      var specialChars = "~!#$%&*-+|";
+      var specialChars = "!\"#$%&'()*+,-./:;<=>?@[]^_`{|}~";
       var randPasswordArray = [];
       var arrayIndex = 0;
       // When the user selects anyone of the password criteria, we will take the corresponding value and pushing it into 'randpassworArray'
