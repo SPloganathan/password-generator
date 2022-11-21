@@ -20,34 +20,78 @@ function generatePassword() {
   );
   // Condition - Password length should be greater than or equal to 8 and less than or equal to 128.
   if (passwordLength >= 8 && passwordLength <= 128) {
-    var shouldContinue = prompt(
+    var shouldContinue = confirm(
       "Click OK to start including special characters"
     );
     // If the above condition is true it enters the below if loop or if it is false it goes to line 48
     if (shouldContinue) {
       // Storing the password criterias in the respective varaiables
-      var lowerCase = prompt(
+      var lowerCase = confirm(
         "Click OK to confirm including lowercase characters"
       );
-      var upperCase = prompt(
+      var upperCase = confirm(
         "Click OK to confirm including uppercase characters"
       );
-      var numeric = prompt("Click OK to confirm including numeric characters");
-      var specialCharacter = prompt(
+      var numeric = confirm("Click OK to confirm including numeric characters");
+      var specialCharacter = confirm(
         "Click OK to confirm including special characters"
       );
       // If the user hasn't choosen anyone of the password criteria it again triggers the 'generatepassword' function
       if (!lowerCase && !upperCase && !numeric && !specialCharacter) {
         alert("Please choose atleast one password criteria");
-        generatePassword();
+        return generatePassword();
+      }
+      // The actual password generation logic starts here
+      // Defining variables for all possible characters and bringing the values
+      var numberChars = "0123456789";
+      var upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      var lowerChars = "abcdefghijklmnopqrstuvwxyz";
+      var specialChars = "~!#$%&*-+|";
+      var randPasswordArray = [];
+      var arrayIndex = 0;
+      // When the user selects anyone of the password criteria, we will take the corresponding value and pushing it into 'randpassworArray'
+      if (numeric) {
+        arrayIndex++;
+        randPasswordArray.push(numberChars);
+      }
+      if (upperCase) {
+        arrayIndex++;
+        randPasswordArray.push(upperChars);
+      }
+      if (lowerCase) {
+        arrayIndex++;
+        randPasswordArray.push(lowerChars);
+      }
+      if (specialCharacter) {
+        arrayIndex++;
+        randPasswordArray.push(specialChars);
+      }
+      // Using this for loop to generate array value for the remaining password length
+      for (let i = arrayIndex; i < passwordLength; i++) {
+        randPasswordArray.push(
+          randPasswordArray[Math.floor(Math.random() * arrayIndex)]
+        );
+      }
+      // using this for loop for generating the actual password using math random
+      var password = "";
+      for (let i = 0; i < randPasswordArray.length; i++) {
+        var passwordSelection = randPasswordArray[i];
+        password +=
+          passwordSelection[
+            Math.floor(Math.random() * passwordSelection.length)
+          ];
       }
 
-      return passwordLength;
+      return password;
     }
-
-    return "You must choose password criteria";
+    // Setting the empty string in password text area to prevent displaying 'undefined'
+    alert("You must choose password criteria");
+    return "";
   }
-  return "Password length should be greater than 8 and less than 128 characters";
+  alert(
+    "Password length should be greater than or equal to 8 and less than or equal to 128 characters"
+  );
+  return "";
 }
 
 // Add event listener to generate button
